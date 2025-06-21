@@ -17,9 +17,9 @@ Route::get('/', [\App\Http\Controllers\MainController::class, 'index'])->name('s
 
 Route::get('/about-us', [\App\Http\Controllers\AboutUsController::class, 'index'])->name('site.about-us');
 
-Route::get('/contact', [\App\Http\Controllers\ContactController::class, 'index'])->name('site.contact');
+Route::get('/contact', [\App\Http\Controllers\ContactController::class, 'store'])->name('site.contact');
 
-Route::post('/contact', [\App\Http\Controllers\ContactController::class, 'index'])->name('site.contact');
+Route::post('/contact', [\App\Http\Controllers\ContactController::class, 'store'])->name('site.contact');
 
 Route::get('login', function () {
     return 'Login';
