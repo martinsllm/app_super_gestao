@@ -22,23 +22,20 @@ class ContactController extends Controller
     public function index()
     {
         $reason_contacts = $this->reason_contacts->getAll();
-
         return view('site.contact', ['reason_contacts' => $reason_contacts]);
     }
 
     public function store(Request $request)
     {
-        $reason_contacts = $this->reason_contacts->getAll();
-
         $request->validate([
             'name' => 'required|min:3|max:40',
             'phone' => 'required',
-            'email' => 'required',
+            'email' => 'email',
             'reason_contact_id' => 'required',
             'message' => 'required|max:2000',
         ]);
 
         $this->contactRepository->create($request->all());
-        return view('site.main', ['reason_contacts' => $reason_contacts]);
+        return redirect()->route('site.main');
     }
 }
