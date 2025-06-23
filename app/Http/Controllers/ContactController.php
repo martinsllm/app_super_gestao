@@ -27,13 +27,24 @@ class ContactController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $rules = [
             'name' => 'required|min:3|max:40',
             'phone' => 'required',
             'email' => 'email',
             'reason_contact_id' => 'required',
             'message' => 'required|max:2000',
-        ]);
+        ];
+
+        $messages = [
+            'required' => 'O campo :attribute precisa ser preenchido.',
+            'min' => 'O campo :attribute deve ter no mínimo :min caracteres.',
+            'max' => 'O campo :attribute deve ter no máximo :max caracteres.',
+            'email' => 'Informe um e-mail válido.'
+        ];
+        $request->validate(
+            $rules,
+            $messages
+        );
 
         $this->contactRepository->create($request->all());
         return redirect()->route('site.main');

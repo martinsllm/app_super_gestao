@@ -2,11 +2,14 @@
 <form action={{ route('site.contact') }} method="post">
     @csrf
     <input name="name" value="{{ old('name')}}" type="text" placeholder="Nome" class="{{ $class }}">
-    <br>
+    @include('site.layouts._partials.error', ['field_name' => 'name'])
+
     <input name="phone" value="{{ old('phone')}}" type="text" placeholder="Telefone" id="phone" class="{{ $class }}">
-    <br>
+    @include('site.layouts._partials.error', ['field_name' => 'phone'])
+
     <input name="email" value="{{ old('email')}}" type="text" placeholder="E-mail" class="{{ $class }}">
-    <br>
+    @include('site.layouts._partials.error', ['field_name' => 'email'])
+
     <select name="reason_contact_id" class="{{ $class }}">
         <option value="">Qual o motivo do contato?</option>
         @foreach ($reason_contacts as $key => $reason_contact)
@@ -17,15 +20,11 @@
         @endforeach
 
     </select>
-    <br>
+    @include('site.layouts._partials.error', ['field_name' => 'reason_contact_id'])
+
     <textarea name="message"
         class="{{ $class }}">{{ (old('message') != '') ? old('message') : 'Preencha aqui a sua mensagem' }} </textarea>
-    <br>
+    @include('site.layouts._partials.error', ['field_name' => 'message'])
+
     <button type="submit" class="{{ $class }}">ENVIAR</button>
 </form>
-
-<div style="position:absolute; top:0px; left:0px; width:100%; background:red">
-    <pre>
-        {{print_r($errors)}}
-    </pre>
-</div>
