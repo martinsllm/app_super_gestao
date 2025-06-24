@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\MainController::class, 'index'])->name('site.main');
+Route::get('/', [\App\Http\Controllers\MainController::class, 'index'])->name('site.main')->middleware('log.acesso');
 
 Route::get('/about-us', [\App\Http\Controllers\AboutUsController::class, 'index'])->name('site.about-us');
 
@@ -26,7 +26,7 @@ Route::get('login', function () {
 })->name('site.login');
 
 
-Route::prefix('/app')->group(function () {
+Route::prefix('/app')->middleware('authenticator:default,visitor')->group(function () {
     Route::get('clients', function () {
         return 'Clients';
     })->name('app.clients');

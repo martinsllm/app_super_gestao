@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 class SupplierController extends Controller
 {
+    public function __construct()
+    {
+    }
+
     public function index()
     {
         $suppliers = [

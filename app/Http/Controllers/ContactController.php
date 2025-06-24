@@ -9,19 +9,19 @@ use Illuminate\Http\Request;
 class ContactController extends Controller
 {
     protected $contactRepository;
-    protected $reason_contacts;
+    protected $reasonContactRepository;
 
     public function __construct(
         private ContactRepositoryInterface $repository,
         private ReasonContactRepositoryInterface $reason_contacts_repo
     ) {
         $this->contactRepository = $repository;
-        $this->reason_contacts = $reason_contacts_repo;
+        $this->reasonContactRepository = $reason_contacts_repo;
     }
 
     public function index()
     {
-        $reason_contacts = $this->reason_contacts->getAll();
+        $reason_contacts = $this->reasonContactRepository->getAll();
         return view('site.contact', ['reason_contacts' => $reason_contacts]);
     }
 
@@ -41,6 +41,7 @@ class ContactController extends Controller
             'max' => 'O campo :attribute deve ter no máximo :max caracteres.',
             'email' => 'Informe um e-mail válido.'
         ];
+
         $request->validate(
             $rules,
             $messages

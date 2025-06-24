@@ -8,17 +8,16 @@ use App\Contracts\ReasonContactRepositoryInterface;
 
 class MainController extends Controller
 {
-    protected $reason_contacts;
+    protected $reasonContactRepository;
 
-    public function __construct(private ReasonContactRepositoryInterface $reason_contacts_repo)
+    public function __construct(private ReasonContactRepositoryInterface $repository)
     {
-        $this->reason_contacts = $reason_contacts_repo;
+        $this->reasonContactRepository = $repository;
     }
 
     public function index()
     {
-        $reason_contacts = $this->reason_contacts->getAll();
-
+        $reason_contacts = $this->reasonContactRepository->getAll();
         return view('site.main', ['reason_contacts' => $reason_contacts]);
     }
 }
