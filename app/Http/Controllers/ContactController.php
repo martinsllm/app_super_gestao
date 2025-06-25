@@ -42,10 +42,7 @@ class ContactController extends Controller
             'email' => 'Informe um e-mail válido.'
         ];
 
-        $request->validate(
-            $rules,
-            $messages
-        );
+        $request->validate($rules, $messages);
 
         $this->contactRepository->create($request->all());
         return redirect()->route('site.main');

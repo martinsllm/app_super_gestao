@@ -15,18 +15,12 @@ class AuthMiddleware
      */
     public function handle(Request $request, Closure $next, $auth_method, $perfil): Response
     {
-        if ($auth_method == "default") {
-            echo "Verificar credenciais no Banco de dados.";
-        }
+        session_start();
 
-        if ($auth_method == "ldap") {
-            echo "Verificar credenciais no AD";
-        }
-
-        if (false) {
+        if (isset($_SESSION["email"]) && $_SESSION["email"] != '') {
             return $next($request);
         } else {
-            return Response('Acesso negado! Usuário não autenticado!!!');
+            return redirect()->route('site.login', ['error' => 2]);
         }
     }
 }

@@ -21,10 +21,9 @@ Route::get('/contact', [\App\Http\Controllers\ContactController::class, 'index']
 
 Route::post('/contact', [\App\Http\Controllers\ContactController::class, 'store'])->name('site.contact');
 
-Route::get('login', function () {
-    return 'Login';
-})->name('site.login');
+Route::get('login/{error?}', [\App\Http\Controllers\LoginController::class, 'index'])->name('site.login');
 
+Route::post('login', [\App\Http\Controllers\LoginController::class, 'login'])->name('site.login');
 
 Route::prefix('/app')->middleware('authenticator:default,visitor')->group(function () {
     Route::get('clients', function () {
