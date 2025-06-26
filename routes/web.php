@@ -27,10 +27,13 @@ Route::prefix('/app')->middleware('authenticator:default,visitor')->group(functi
     Route::get('home', [\App\Http\Controllers\HomeController::class, 'index'])->name('app.home');
     Route::get('logout', [\App\Http\Controllers\LoginController::class, 'logout'])->name('app.logout');
     Route::get('client', [\App\Http\Controllers\ClientController::class, 'index'])->name('app.client');
+
     Route::get('supplier', [\App\Http\Controllers\SupplierController::class, 'index'])->name('app.supplier');
     Route::post('supplier/list', [\App\Http\Controllers\SupplierController::class, 'list'])->name('app.supplier.list');
     Route::get('supplier/add', [\App\Http\Controllers\SupplierController::class, 'add'])->name('app.supplier.add');
     Route::post('supplier/add', [\App\Http\Controllers\SupplierController::class, 'add'])->name('app.supplier.add');
+    Route::get('supplier/update/{id}/{msg?}', [\App\Http\Controllers\SupplierController::class, 'update'])->name('app.supplier.update');
+
     Route::get('product', [\App\Http\Controllers\ProductController::class, 'index'])->name('app.product');
 });
 

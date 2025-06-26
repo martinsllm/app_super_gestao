@@ -6,7 +6,7 @@
 
     <div class="content-page">
         <div class="title-page-2">
-            <p>Novo Fornecedor</p>
+            <p>{{ $title }}</p>
         </div>
 
         <div class="menu">
@@ -17,17 +17,21 @@
         </div>
 
         <div class="info-page">
-            {{ $msg }}
+            {{ $msg ?? ''}}
             <div style="width: 30%; margin-left: auto; margin-right: auto;">
                 <form method="post" action="{{ route('app.supplier.add') }}">
+                    <input type="hidden" name="id" value={{ $supplier->id ?? ''}}>
                     @csrf
-                    <input type="text" name="name" value="{{ old('name') }}" placeholder="Nome" class="black-border">
+                    <input type="text" name="name" value="{{ $supplier->name ?? old('name') }}" placeholder="Nome"
+                        class="black-border">
                     @include('site.layouts._partials.error', ['field_name' => 'name'])
 
-                    <input type="text" name="uf" value="{{ old('uf') }}" placeholder="UF" class="black-border">
+                    <input type="text" name="uf" value="{{ $supplier->uf ?? old('uf') }}" placeholder="UF"
+                        class="black-border">
                     @include('site.layouts._partials.error', ['field_name' => 'uf'])
 
-                    <input type="text" name="email" value="{{ old('email') }}" placeholder="E-mail" class="black-border">
+                    <input type="text" name="email" value="{{ $supplier->email ?? old('email') }}" placeholder="E-mail"
+                        class="black-border">
                     @include('site.layouts._partials.error', ['field_name' => 'email'])
 
                     <button type="submit" class="black-border">Cadastrar</button>

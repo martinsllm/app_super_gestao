@@ -4,7 +4,12 @@ namespace App\Contracts;
 
 interface SupplierRepositoryInterface
 {
-    public function create(array $attributes);
 
     public function list(array $attributes);
+
+    public function findById($id);
+
+    public function create(array $attributes);
+
+    public function update(array $attributes);
 }
