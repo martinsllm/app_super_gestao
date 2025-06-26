@@ -19,4 +19,13 @@ class SupplierRepository implements SupplierRepositoryInterface
         $this->supplier->fill($attributes);
         $this->supplier->save();
     }
+
+    public function list(array $attributes)
+    {
+        return $this->supplier
+            ->where('name', 'like', '%' . $attributes['name'] . '%')
+            ->where('uf', 'like', '%' . $attributes['uf'] . '%')
+            ->where('email', 'like', '%' . $attributes['name'] . '%')
+            ->get();
+    }
 }
