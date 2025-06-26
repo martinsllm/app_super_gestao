@@ -5,7 +5,7 @@
 @section('content')
     <div class="content-page">
         <div class="title-page">
-            <h1>Olá, eu sou o Super Gestão</h1>
+            <h1>Olá, somos o Super Gestão</h1>
         </div>
 
         <div class="info-page">
