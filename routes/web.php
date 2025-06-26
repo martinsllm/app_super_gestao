@@ -18,24 +18,17 @@ Route::get('/', [\App\Http\Controllers\MainController::class, 'index'])->name('s
 Route::get('/about-us', [\App\Http\Controllers\AboutUsController::class, 'index'])->name('site.about-us');
 
 Route::get('/contact', [\App\Http\Controllers\ContactController::class, 'index'])->name('site.contact');
-
 Route::post('/contact', [\App\Http\Controllers\ContactController::class, 'store'])->name('site.contact');
 
 Route::get('login/{error?}', [\App\Http\Controllers\LoginController::class, 'index'])->name('site.login');
-
 Route::post('login', [\App\Http\Controllers\LoginController::class, 'login'])->name('site.login');
 
 Route::prefix('/app')->middleware('authenticator:default,visitor')->group(function () {
-    Route::get('clients', function () {
-        return 'Clients';
-    })->name('app.clients');
-
-    Route::get('suppliers', [\App\Http\Controllers\SupplierController::class, 'index'])->name('app.suppliers');
-    ;
-
-    Route::get('products', function () {
-        return 'Products';
-    })->name('app.products');
+    Route::get('home', [\App\Http\Controllers\HomeController::class, 'index'])->name('app.home');
+    Route::get('logout', [\App\Http\Controllers\LoginController::class, 'logout'])->name('app.logout');
+    Route::get('client', [\App\Http\Controllers\ClientController::class, 'index'])->name('app.client');
+    Route::get('supplier', [\App\Http\Controllers\SupplierController::class, 'index'])->name('app.supplier');
+    Route::get('product', [\App\Http\Controllers\ProductController::class, 'index'])->name('app.product');
     ;
 });
 

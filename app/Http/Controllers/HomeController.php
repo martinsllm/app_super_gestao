@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class SupplierController extends Controller
+class HomeController extends Controller
 {
     public function __construct()
     {
+
     }
 
     public function index()
     {
-        return view('app.supplier');
+        return view('app.home');
     }
 }
