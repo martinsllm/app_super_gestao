@@ -42,6 +42,8 @@
                 </table>
 
                 {{ $suppliers->appends($request)->links() }}
+                <br>
+                Exibindo {{ $suppliers->count() }} de {{ $suppliers->total() }} registros encontrados.
             </div>
         </div>
     </div>
