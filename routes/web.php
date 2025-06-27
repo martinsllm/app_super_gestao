@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,11 +24,13 @@ Route::post('/contact', [\App\Http\Controllers\ContactController::class, 'store'
 Route::get('login/{error?}', [\App\Http\Controllers\LoginController::class, 'index'])->name('site.login');
 Route::post('login', [\App\Http\Controllers\LoginController::class, 'login'])->name('site.login');
 
+//Rotas Privadas
 Route::prefix('/app')->middleware('authenticator:default,visitor')->group(function () {
     Route::get('home', [\App\Http\Controllers\HomeController::class, 'index'])->name('app.home');
     Route::get('logout', [\App\Http\Controllers\LoginController::class, 'logout'])->name('app.logout');
     Route::get('client', [\App\Http\Controllers\ClientController::class, 'index'])->name('app.client');
 
+    //Fornecedores
     Route::get('supplier', [\App\Http\Controllers\SupplierController::class, 'index'])->name('app.supplier');
     Route::post('supplier/list', [\App\Http\Controllers\SupplierController::class, 'list'])->name('app.supplier.list');
     Route::get('supplier/list', [\App\Http\Controllers\SupplierController::class, 'list'])->name('app.supplier.list');
@@ -36,7 +39,8 @@ Route::prefix('/app')->middleware('authenticator:default,visitor')->group(functi
     Route::get('supplier/update/{id}/{msg?}', [\App\Http\Controllers\SupplierController::class, 'update'])->name('app.supplier.update');
     Route::get('supplier/delete/{id}', [\App\Http\Controllers\SupplierController::class, 'delete'])->name('app.supplier.delete');
 
-    Route::get('product', [\App\Http\Controllers\ProductController::class, 'index'])->name('app.product');
+    //Produtos
+    Route::resource('product', ProductController::class);
 });
 
 Route::fallback(function () {

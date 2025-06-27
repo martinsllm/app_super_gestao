@@ -9,7 +9,7 @@
             <li><a href="{{ route('app.home') }}">Home</a></li>
             <li><a href="{{ route('app.client') }}">Cliente</a></li>
             <li><a href="{{ route('app.supplier') }}">Fornecedor</a></li>
-            <li><a href="{{ route('app.product') }}">Produto</a></li>
+            <li><a href="{{ route('product.index') }}">Produto</a></li>
             <li><a href="{{ route('app.logout') }}">Sair</a></li>
         </ul>
     </div>

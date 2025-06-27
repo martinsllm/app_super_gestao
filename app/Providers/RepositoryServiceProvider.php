@@ -3,10 +3,12 @@
 namespace App\Providers;
 
 use App\Contracts\ContactRepositoryInterface;
+use App\Contracts\ProductRepositoryInterface;
 use App\Contracts\ReasonContactRepositoryInterface;
 use App\Contracts\SupplierRepositoryInterface;
 use App\Contracts\UserRepositoryInterface;
 use App\Repositories\ContactRepository;
+use App\Repositories\ProductRepository;
 use App\Repositories\ReasonContactRepository;
 use App\Repositories\SupplierRepository;
 use App\Repositories\UserRepository;
@@ -23,6 +25,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(ReasonContactRepositoryInterface::class, ReasonContactRepository::class);
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
         $this->app->bind(SupplierRepositoryInterface::class, SupplierRepository::class);
+        $this->app->bind(ProductRepositoryInterface::class, ProductRepository::class);
     }
 
     /**
