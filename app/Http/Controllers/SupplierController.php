@@ -70,4 +70,14 @@ class SupplierController extends Controller
         $supplier = $this->supplierRepository->findById($id);
         return view('app.supplier.add', ['supplier' => $supplier, 'msg' => $msg, 'title' => 'Editar Fornecedor']);
     }
+
+    public function delete($id)
+    {
+        $supplier = $this->supplierRepository->findById($id);
+
+        if ($supplier) {
+            $this->supplierRepository->delete($supplier->id);
+            return redirect()->route('app.supplier');
+        }
+    }
 }

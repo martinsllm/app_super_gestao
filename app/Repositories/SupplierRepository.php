@@ -24,7 +24,7 @@ class SupplierRepository implements SupplierRepositoryInterface
             ->where('name', 'like', '%' . $name . '%')
             ->where('uf', 'like', '%' . $uf . '%')
             ->where('email', 'like', '%' . $email . '%')
-            ->paginate(2);
+            ->paginate(5);
 
         return $suppliers;
     }
@@ -43,5 +43,10 @@ class SupplierRepository implements SupplierRepositoryInterface
     public function update(array $attributes)
     {
         $this->supplier->update($attributes);
+    }
+
+    public function delete($id)
+    {
+        $this->supplier->where('id', $id)->delete();
     }
 }
