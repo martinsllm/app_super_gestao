@@ -24,7 +24,7 @@ class SupplierRepository implements SupplierRepositoryInterface
             ->where('name', 'like', '%' . $name . '%')
             ->where('uf', 'like', '%' . $uf . '%')
             ->where('email', 'like', '%' . $email . '%')
-            ->simplePaginate(2);
+            ->paginate(2);
 
         return $suppliers;
     }
