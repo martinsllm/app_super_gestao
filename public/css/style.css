@@ -207,6 +207,14 @@ span {
     margin: 0px 15px 0px 15px;
 }
 
+.pagination li {
+    display: inline;
+}
+
+.pagination ul {
+    list-style-type: none;
+}
+
 .error {
     color: red;
     position: relative;

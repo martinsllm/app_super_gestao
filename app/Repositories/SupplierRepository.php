@@ -16,11 +16,17 @@ class SupplierRepository implements SupplierRepositoryInterface
 
     public function list(array $attributes)
     {
-        return $this->supplier
-            ->where('name', 'like', '%' . $attributes['name'] . '%')
-            ->where('uf', 'like', '%' . $attributes['uf'] . '%')
-            ->where('email', 'like', '%' . $attributes['name'] . '%')
-            ->get();
+        $name = $attributes["name"] ?? "";
+        $uf = $attributes["uf"] ?? "";
+        $email = $attributes["email"] ?? "";
+
+        $suppliers = $this->supplier
+            ->where('name', 'like', '%' . $name . '%')
+            ->where('uf', 'like', '%' . $uf . '%')
+            ->where('email', 'like', '%' . $email . '%')
+            ->simplePaginate(2);
+
+        return $suppliers;
     }
 
     public function findById($id)

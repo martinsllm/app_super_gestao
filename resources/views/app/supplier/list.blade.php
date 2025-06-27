@@ -40,6 +40,8 @@
                         @endforeach
                     </tbody>
                 </table>
+
+                {{ $suppliers->appends($request)->links() }}
             </div>
         </div>
     </div>

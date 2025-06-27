@@ -22,7 +22,7 @@ class SupplierController extends Controller
     public function list(Request $request)
     {
         $suppliers = $this->supplierRepository->list($request->all());
-        return view('app.supplier.list', ['suppliers' => $suppliers]);
+        return view('app.supplier.list', ['suppliers' => $suppliers, 'request' => $request->all()]);
     }
 
     public function add(Request $request)
