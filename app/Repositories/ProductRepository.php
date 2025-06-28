@@ -19,6 +19,11 @@ class ProductRepository implements ProductRepositoryInterface
         return $this->product->paginate(10);
     }
 
+    public function findById($id)
+    {
+        return $this->product->find($id);
+    }
+
     public function create(array $attributes)
     {
         $this->product->fill($attributes);
