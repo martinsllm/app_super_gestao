@@ -35,14 +35,7 @@ class ContactController extends Controller
             'message' => 'required|max:2000',
         ];
 
-        $messages = [
-            'required' => 'O campo :attribute precisa ser preenchido.',
-            'min' => 'O campo :attribute deve ter no mínimo :min caracteres.',
-            'max' => 'O campo :attribute deve ter no máximo :max caracteres.',
-            'email' => 'Informe um e-mail válido.'
-        ];
-
-        $request->validate($rules, $messages);
+        $request->validate($rules);
 
         $this->contactRepository->create($request->all());
         return redirect()->route('site.main');

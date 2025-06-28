@@ -35,17 +35,8 @@ class SupplierController extends Controller
             'email' => 'required|email'
         ];
 
-        $messages = [
-            'required' => 'O campo :attribute é obrigatório.',
-            'name.min' => 'O campo nome deve ter pelo menos 3 caracteres',
-            'name.max' => 'O campo nome deve ter no máximo 40 caracteres',
-            'uf.min' => 'O campo UF deve ter no mínimo 2 caracteres.',
-            'uf.max' => 'O campo UF deve ter no máximo 2 caracteres.',
-            'email' => 'Informe um endereço de e-mail válido.'
-        ];
-
         if ($request->input('_token') != '' && $request->input('id') == '') {
-            if ($request->validate($rules, $messages)) {
+            if ($request->validate($rules)) {
                 $this->supplierRepository->create($request->all());
                 $msg = 'Fornecedor cadastrado com sucesso!';
             }
@@ -54,7 +45,7 @@ class SupplierController extends Controller
         if ($request->input('_token') != '' && $request->input('id') != '') {
             $supplier = $this->supplierRepository->findById($request->input('id'));
 
-            if ($request->validate($rules, $messages)) {
+            if ($request->validate($rules)) {
                 $supplier->update($request->all());
                 $msg = 'Fornecedor atualizado com sucesso!';
             }
