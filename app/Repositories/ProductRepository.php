@@ -18,4 +18,10 @@ class ProductRepository implements ProductRepositoryInterface
     {
         return $this->product->paginate(10);
     }
+
+    public function create(array $attributes)
+    {
+        $this->product->fill($attributes);
+        $this->product->save();
+    }
 }
