@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\ProductRepositoryInterface;
+use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use App\Models\Unit;
 use Illuminate\Http\Request;
@@ -37,19 +38,9 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        $rules = [
-            'name' => 'required|min:3|max:40',
-            'description' => 'required',
-            'weight' => 'required|gt:0',
-            'unit_id' => 'exists:units,id'
-        ];
-
-        if ($request->validate($rules)) {
-            $this->productRepository->create($request->all());
-        }
-
+        $this->productRepository->create($request->all());
         return redirect()->route('product.index');
     }
 
@@ -73,7 +64,7 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+    public function update(ProductRequest $request, Product $product)
     {
         $product->update($request->all());
         return redirect()->route('product.show', ['product' => $product->id]);

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Contracts\ContactRepositoryInterface;
 use App\Contracts\ReasonContactRepositoryInterface;
-use Illuminate\Http\Request;
+use App\Http\Requests\ContactRequest;
 
 class ContactController extends Controller
 {
@@ -25,18 +25,8 @@ class ContactController extends Controller
         return view('site.contact', ['reason_contacts' => $reason_contacts]);
     }
 
-    public function store(Request $request)
+    public function store(ContactRequest $request)
     {
-        $rules = [
-            'name' => 'required|min:3|max:40',
-            'phone' => 'required',
-            'email' => 'email',
-            'reason_contact_id' => 'required',
-            'message' => 'required|max:2000',
-        ];
-
-        $request->validate($rules);
-
         $this->contactRepository->create($request->all());
         return redirect()->route('site.main');
     }
