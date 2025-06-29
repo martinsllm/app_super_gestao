@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductDetailController;
 use \App\Http\Controllers\SupplierController;
 
 /*
@@ -38,6 +39,7 @@ Route::prefix('/app')->middleware('authenticator:default,visitor')->group(functi
 
     //Produtos
     Route::resource('product', ProductController::class);
+    Route::resource('product_detail', ProductDetailController::class);
 });
 
 Route::fallback(function () {

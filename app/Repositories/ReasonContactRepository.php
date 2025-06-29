@@ -2,10 +2,10 @@
 
 namespace App\Repositories;
 
-use App\Contracts\ReasonContactRepositoryInterface;
+use App\Contracts\GetRepositoryInterface;
 use App\Models\ReasonContact;
 
-class ReasonContactRepository implements ReasonContactRepositoryInterface
+class ReasonContactRepository implements GetRepositoryInterface
 {
     protected $reason_contact;
 

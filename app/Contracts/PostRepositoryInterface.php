@@ -2,7 +2,7 @@
 
 namespace App\Contracts;
 
-interface ContactRepositoryInterface
+interface PostRepositoryInterface
 {
     public function create(array $attributes);
 

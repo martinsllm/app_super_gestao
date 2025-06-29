@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Contracts\ContactRepositoryInterface;
-use App\Contracts\ReasonContactRepositoryInterface;
+use App\Contracts\PostRepositoryInterface;
+use App\Contracts\GetRepositoryInterface;
 use App\Http\Requests\ContactRequest;
 
 class ContactController extends Controller
@@ -12,11 +12,11 @@ class ContactController extends Controller
     protected $reasonContactRepository;
 
     public function __construct(
-        private ContactRepositoryInterface $repository,
-        private ReasonContactRepositoryInterface $reason_contacts_repo
+        private PostRepositoryInterface $repositoryInterface,
+        private GetRepositoryInterface $reasonContactRepositoryInterface
     ) {
-        $this->contactRepository = $repository;
-        $this->reasonContactRepository = $reason_contacts_repo;
+        $this->contactRepository = $repositoryInterface;
+        $this->reasonContactRepository = $reasonContactRepositoryInterface;
     }
 
     public function index()

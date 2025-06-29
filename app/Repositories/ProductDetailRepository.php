@@ -5,7 +5,7 @@ namespace App\Repositories;
 use App\Contracts\RepositoryInterface;
 use App\Models\Product;
 
-class ProductRepository implements RepositoryInterface
+class ProductDetailRepository implements RepositoryInterface
 {
     protected $product;
 
@@ -17,6 +17,11 @@ class ProductRepository implements RepositoryInterface
     public function getAll()
     {
         return $this->product->paginate(10);
+    }
+
+    public function findById($id)
+    {
+        return $this->product->find($id);
     }
 
     public function create(array $attributes)

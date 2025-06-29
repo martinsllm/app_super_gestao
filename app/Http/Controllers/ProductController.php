@@ -2,19 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Contracts\ProductRepositoryInterface;
+use App\Contracts\GetRepositoryInterface;
+use App\Contracts\RepositoryInterface;
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
-use App\Models\Unit;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
     protected $productRepository;
+    protected $unitRepository;
 
-    public function __construct(private ProductRepositoryInterface $repository)
-    {
+    public function __construct(
+        private RepositoryInterface $repository,
+        private GetRepositoryInterface $unitRepositoryInterface
+    ) {
         $this->productRepository = $repository;
+        $this->unitRepository = $unitRepositoryInterface;
     }
 
     /**
@@ -31,7 +35,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $units = Unit::all();
+        $units = $this->unitRepository->getAll();
         return view('app.product.create', ['units' => $units]);
     }
 
@@ -57,7 +61,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $units = Unit::all();
+        $units = $this->unitRepository->getAll();
         return view('app.product.edit', ['product' => $product, 'units' => $units]);
     }
 

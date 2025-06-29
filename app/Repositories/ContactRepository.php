@@ -2,10 +2,10 @@
 
 namespace App\Repositories;
 
-use App\Contracts\ContactRepositoryInterface;
+use App\Contracts\PostRepositoryInterface;
 use App\Models\Contact;
 
-class ContactRepository implements ContactRepositoryInterface
+class ContactRepository implements PostRepositoryInterface
 {
     protected $contact;
 

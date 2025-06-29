@@ -3,7 +3,7 @@
 namespace App\Contracts;
 
 
-interface ReasonContactRepositoryInterface
+interface GetRepositoryInterface
 {
     public function getAll();
 }

@@ -2,12 +2,8 @@
 
 namespace App\Contracts;
 
-interface SupplierRepositoryInterface
+interface SupplierRepositoryInterface extends PostRepositoryInterface
 {
-
     public function list(array $attributes);
 
-    public function findById($id);
-
-    public function create(array $attributes);
 }

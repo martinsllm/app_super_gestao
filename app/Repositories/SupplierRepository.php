@@ -29,11 +29,6 @@ class SupplierRepository implements SupplierRepositoryInterface
         return $suppliers;
     }
 
-    public function findById($id)
-    {
-        return $this->supplier->find($id);
-    }
-
     public function create(array $attributes)
     {
         $this->supplier->fill($attributes);

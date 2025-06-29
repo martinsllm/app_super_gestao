@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\GetRepositoryInterface;
+use App\Repositories\ReasonContactRepository;
 use Illuminate\Http\Request;
 use App\Models\ReasonContact;
 use App\Contracts\ReasonContactRepositoryInterface;
@@ -10,9 +12,9 @@ class MainController extends Controller
 {
     protected $reasonContactRepository;
 
-    public function __construct(private ReasonContactRepositoryInterface $repository)
+    public function __construct(private GetRepositoryInterface $reasonContactRepositoryInterface)
     {
-        $this->reasonContactRepository = $repository;
+        $this->reasonContactRepository = $reasonContactRepositoryInterface;
     }
 
     public function index()
