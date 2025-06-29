@@ -11,7 +11,6 @@ interface ProductRepositoryInterface
 
     public function create(array $attributes);
 
-    public function update(array $attributes);
 }
 
 

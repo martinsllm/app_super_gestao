@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\ProductController;
+use \App\Http\Controllers\SupplierController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,13 +32,9 @@ Route::prefix('/app')->middleware('authenticator:default,visitor')->group(functi
     Route::get('client', [\App\Http\Controllers\ClientController::class, 'index'])->name('app.client');
 
     //Fornecedores
-    Route::get('supplier', [\App\Http\Controllers\SupplierController::class, 'index'])->name('app.supplier');
-    Route::post('supplier/list', [\App\Http\Controllers\SupplierController::class, 'list'])->name('app.supplier.list');
-    Route::get('supplier/list', [\App\Http\Controllers\SupplierController::class, 'list'])->name('app.supplier.list');
-    Route::get('supplier/add', [\App\Http\Controllers\SupplierController::class, 'add'])->name('app.supplier.add');
-    Route::post('supplier/add', [\App\Http\Controllers\SupplierController::class, 'add'])->name('app.supplier.add');
-    Route::get('supplier/update/{id}/{msg?}', [\App\Http\Controllers\SupplierController::class, 'update'])->name('app.supplier.update');
-    Route::get('supplier/delete/{id}', [\App\Http\Controllers\SupplierController::class, 'delete'])->name('app.supplier.delete');
+    Route::resource('supplier', SupplierController::class);
+    Route::post('supplier/list', [SupplierController::class, 'show'])->name('supplier.list');
+    Route::get('supplier/list', [SupplierController::class, 'show'])->name('supplier.list');
 
     //Produtos
     Route::resource('product', ProductController::class);

@@ -11,14 +11,13 @@
 
         <div class="menu">
             <ul>
-                <li><a href="{{ route('app.supplier.add') }}"> Novo </a></li>
-                <li><a href="{{ route('app.supplier') }}"> Consulta </a></li>
+                <li><a href="{{ route('supplier.create') }}"> Novo </a></li>
             </ul>
         </div>
 
         <div class="info-page">
             <div style="width: 30%; margin-left: auto; margin-right: auto;">
-                <form method="post" action="{{ route('app.supplier.list') }}">
+                <form method="post" action="{{ route('supplier.list') }}">
                     @csrf
                     <input type="text" name="name" placeholder="Nome" class="black-border">
                     <input type="text" name="uf" placeholder="UF" class="black-border">

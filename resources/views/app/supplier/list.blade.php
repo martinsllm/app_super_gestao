@@ -11,8 +11,8 @@
 
         <div class="menu">
             <ul>
-                <li><a href="{{ route('app.supplier.add') }}"> Novo </a></li>
-                <li><a href="{{ route('app.supplier') }}"> Consulta </a></li>
+                <li><a href="{{ route('supplier.index') }}"> Voltar </a></li>
+                <li><a href="{{ route('supplier.create') }}"> Novo </a></li>
             </ul>
         </div>
 
@@ -34,8 +34,17 @@
                                 <td>{{ $supplier->name }}</td>
                                 <td>{{ $supplier->uf }}</td>
                                 <td>{{ $supplier->email }}</td>
-                                <td><a href="{{ route('app.supplier.update', $supplier->id) }}"> Editar </a></td>
-                                <td><a href="{{ route('app.supplier.delete', $supplier->id) }}"> Excluir </a></td>
+                                <td><a href="{{ route('supplier.edit', ['supplier' => $supplier->id]) }}"> Editar </a></td>
+                                <td>
+                                    <form id="form_{{$supplier->id}}" method="post"
+                                        action="{{ route('supplier.destroy', ['supplier' => $supplier->id])}}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <a href="#" onclick="document.getElementById('form_{{$supplier->id}}').submit()">
+                                            Excluir
+                                        </a>
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

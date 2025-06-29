@@ -29,9 +29,4 @@ class ProductRepository implements ProductRepositoryInterface
         $this->product->fill($attributes);
         $this->product->save();
     }
-
-    public function update(array $attributes)
-    {
-        $this->product->update($attributes);
-    }
 }

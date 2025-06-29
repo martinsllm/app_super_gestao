@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\SupplierRepositoryInterface;
+use App\Http\Requests\SupplierRequest;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 
 class SupplierController extends Controller
@@ -14,61 +16,63 @@ class SupplierController extends Controller
         $this->supplierRepository = $repository;
     }
 
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
         return view('app.supplier.index');
     }
 
-    public function list(Request $request)
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return view('app.supplier.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(SupplierRequest $request)
+    {
+        $this->supplierRepository->create($request->all());
+        return redirect()->route('supplier.index');
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Request $request)
     {
         $suppliers = $this->supplierRepository->list($request->all());
         return view('app.supplier.list', ['suppliers' => $suppliers, 'request' => $request->all()]);
     }
 
-    public function add(Request $request)
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Supplier $supplier)
     {
-        $msg = '';
-
-        $rules = [
-            'name' => 'required|min:3|max:40',
-            'uf' => 'required|min:2|max:2',
-            'email' => 'required|email'
-        ];
-
-        if ($request->input('_token') != '' && $request->input('id') == '') {
-            if ($request->validate($rules)) {
-                $this->supplierRepository->create($request->all());
-                $msg = 'Fornecedor cadastrado com sucesso!';
-            }
-        }
-
-        if ($request->input('_token') != '' && $request->input('id') != '') {
-            $supplier = $this->supplierRepository->findById($request->input('id'));
-
-            if ($request->validate($rules)) {
-                $supplier->update($request->all());
-                $msg = 'Fornecedor atualizado com sucesso!';
-            }
-
-            return redirect()->route('app.supplier.update', ['id' => $supplier->id, 'msg' => $msg]);
-        }
-
-        return view('app.supplier.add', ['msg' => $msg, 'title' => 'Novo Fornecedor']);
+        return view('app.supplier.edit', ['supplier' => $supplier]);
     }
 
-    public function update($id, $msg = '')
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(SupplierRequest $request, Supplier $supplier)
     {
-        $supplier = $this->supplierRepository->findById($id);
-        return view('app.supplier.add', ['supplier' => $supplier, 'msg' => $msg, 'title' => 'Editar Fornecedor']);
+        $supplier->update($request->all());
+        return redirect()->route('supplier.index');
     }
 
-    public function delete($id)
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Supplier $supplier)
     {
-        $supplier = $this->supplierRepository->findById($id);
-
-        if ($supplier) {
-            $this->supplierRepository->delete($supplier->id);
-            return redirect()->route('app.supplier');
-        }
+        $supplier->delete();
+        return redirect()->route('supplier.index');
     }
 }

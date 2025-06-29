@@ -40,13 +40,4 @@ class SupplierRepository implements SupplierRepositoryInterface
         $this->supplier->save();
     }
 
-    public function update(array $attributes)
-    {
-        $this->supplier->update($attributes);
-    }
-
-    public function delete($id)
-    {
-        $this->supplier->where('id', $id)->delete();
-    }
 }
